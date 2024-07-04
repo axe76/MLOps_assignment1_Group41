@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-import pandas as pd
 import joblib
 import numpy as np
 
@@ -10,10 +9,16 @@ min_max_scaler = joblib.load('min_max_scaler.pkl')
 
 @app.route('/')
 def hello():
+    '''
+    Landing endpoint
+    '''
     return '<h1>My Flask App</h1>'
 
 @app.route('/predict/', methods=['PUT'])
 def inference():
+    '''
+    Inference endpoint
+    '''
     json_ = request.json
     query = json_['data']
     query = np.array(query).reshape(1,-1)
