@@ -2,11 +2,10 @@
 Test Flask App
 '''
 
+import ast
+import json
 import unittest
 import app as tested_app
-import json
-import ast
-
 
 class FlaskAppTests(unittest.TestCase):
     '''
