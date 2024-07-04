@@ -1,9 +1,7 @@
-import sklearn
 from sklearn import linear_model
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler
 import pandas as pd
-import numpy as np
 import joblib
 
 data = pd.read_csv('BostonHousing.csv')
