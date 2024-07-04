@@ -9,7 +9,7 @@ import pandas as pd
 import joblib
 
 data = pd.read_csv('BostonHousing.csv')
-print(data.head(5))
+print(data.head(4))
 
 column_sels = ['lstat', 'indus', 'nox', 'ptratio', 'rm', 'tax', 'dis', 'age']
 x = data.loc[:,column_sels]
