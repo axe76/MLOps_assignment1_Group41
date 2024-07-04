@@ -12,7 +12,7 @@ model = joblib.load('trained_model.pkl')
 min_max_scaler = joblib.load('min_max_scaler.pkl')
 
 @app.route('/')
-def hello():
+def home():
     '''
     Landing endpoint
     '''
