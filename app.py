@@ -13,7 +13,7 @@ def hello():
     return '<h1>My Flask App</h1>'
 
 @app.route('/predict/', methods=['PUT'])
-def predict():
+def inference():
     json_ = request.json
     query = json_['data']
     query = np.array(query).reshape(1,-1)
