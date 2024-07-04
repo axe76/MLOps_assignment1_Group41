@@ -1,3 +1,7 @@
+'''
+Sklearn module training
+'''
+
 from sklearn import linear_model
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler
