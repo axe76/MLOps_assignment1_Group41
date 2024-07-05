@@ -6,7 +6,7 @@ import ast
 import json
 import app as deployed_app
 
-def setUp():
+def setup():
     '''
     Initialize flask client
     '''
@@ -25,5 +25,5 @@ def run_put_endpoint(flask_client):
     print('Inference output', op)
 
 if __name__ == '__main__':
-    flask_client = setUp()
-    run_put_endpoint(flask_client)
+    deploy_flask_client = setup()
+    run_put_endpoint(deploy_flask_client)
