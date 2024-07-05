@@ -8,7 +8,7 @@ on:
 jobs:
   test:
     name: Test and lint
-    uses: MLOps_assignment1_Group41/.github/workflows/pylint.yml@main
+    uses: axe76/MLOps_assignment1_Group41/.github/workflows/pylint.yml@main
 
   deploy:
     needs:
