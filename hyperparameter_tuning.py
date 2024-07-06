@@ -22,14 +22,6 @@ min_max_scaler = MinMaxScaler()
 x_train_scaled = min_max_scaler.fit_transform(X_train)
 x_test_scaled = min_max_scaler.transform(X_test)
 
-params = {
-    "solver": "auto",
-    "max_iter": 1000,
-    "positive": True,
-    "fit_intercept":False,
-    "random_state": 8888,
-}
-
 def objective(trial):
 
     params = {
