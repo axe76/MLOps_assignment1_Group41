@@ -1,5 +1,1 @@
-Flask
-joblib
-numpy
-pandas
-scikit_learn
+optuna
