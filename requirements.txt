@@ -1,2 +1,4 @@
-optuna
-optuna_dashboard
+numpy
+scikit-learn
+flask
+joblib

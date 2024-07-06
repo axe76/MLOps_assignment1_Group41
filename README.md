@@ -1,3 +1,3 @@
-# MLOps Task 3 Hyperparameter tuning
+# MLOps Task 3 Docker Containerization
 
-Optuna Used for tuning Ridge Regressor.
+First ```hyperparameter_tuning.py``` is run, which saves the best model.

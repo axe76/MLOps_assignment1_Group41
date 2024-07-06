@@ -1,11 +1,11 @@
 import optuna
-from optuna_dashboard import run_server
 from sklearn import linear_model
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
 import pandas as pd
+import joblib
 
 data = pd.read_csv('BostonHousing.csv')
 # print(data.head(4))
@@ -22,16 +22,13 @@ min_max_scaler = MinMaxScaler()
 x_train_scaled = min_max_scaler.fit_transform(X_train)
 x_test_scaled = min_max_scaler.transform(X_test)
 
-params = {
-    "solver": "auto",
-    "max_iter": 1000,
-    "positive": True,
-    "fit_intercept":False,
-    "random_state": 8888,
-}
+joblib.dump(min_max_scaler, 'min_max_scaler.pkl')
+
+best_model = None
+global_model = None
 
 def objective(trial):
-
+    global global_model
     params = {
         'alpha': trial.suggest_float('alpha ', 0.0, 2.0, step=0.5),
         'solver': trial.suggest_categorical('solver ', ['svd', 'cholesky']),
@@ -43,10 +40,16 @@ def objective(trial):
 
     model.fit(x_train_scaled, y_train)
 
+    global_model = model
+
     return mean_squared_error(y_test, model.predict(x_test_scaled), squared=False)
 
-storage = optuna.storages.InMemoryStorage()
-study = optuna.create_study(storage=storage, direction='minimize')
-study.optimize(objective, n_trials=3)
+def callback(study, trial):
+    global best_model
+    if study.best_trial == trial:
+        best_model = global_model
 
-run_server(storage)
+study = optuna.create_study(direction='minimize')
+study.optimize(objective, n_trials=3, callbacks=[callback])
+
+joblib.dump(best_model, 'best_model.pkl')
