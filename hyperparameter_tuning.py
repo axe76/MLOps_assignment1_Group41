@@ -1,4 +1,5 @@
 import optuna
+from optuna_dashboard import run_server
 from sklearn import linear_model
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import PolynomialFeatures, MinMaxScaler
@@ -44,5 +45,8 @@ def objective(trial):
 
     return mean_squared_error(y_test, model.predict(x_test_scaled), squared=False)
 
-study = optuna.create_study(direction='minimize')
+storage = optuna.storages.InMemoryStorage()
+study = optuna.create_study(storage=storage, direction='minimize')
 study.optimize(objective, n_trials=3)
+
+run_server(storage)
