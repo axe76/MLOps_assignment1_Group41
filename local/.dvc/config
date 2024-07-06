@@ -1,0 +1,4 @@
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = /Users/anirudhmenon/Desktop/MLOps_assignment1_Group41/remote_storage
